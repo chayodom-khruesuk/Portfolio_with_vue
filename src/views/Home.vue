@@ -1,15 +1,22 @@
 <template>
-    <v-app :style="{ backgroundColor: 'black' }">
+    <v-app :style="{ backgroundColor: 'black', height: '100vh', overflow: 'hidden' }">
         <NavBar />
         <div class="bubbles">
             <div class="bubble" v-for="n in 20" :key="n"></div>
         </div>
         <v-container fluid>
-            <v-col cols="12" md="5" offset-md="1">
-                <h1 class="text-darken-4 top">welcome to my world</h1>
-                <h1 class="text-darken-4 detail">I'm Film<br>Chayodom Khruesuk<br><span class="rank">Software
-                        Developer.</span><br>based in <span class="upper">thailand</span></h1>
-            </v-col>
+            <v-row>
+                <v-col cols="12" md="5" offset-md="1">
+                    <h1 class="text-darken-4 top">welcome to my world</h1>
+                    <h1 class="text-darken-4 detail">I'm Film<br>Chayodom Khruesuk<br><span class="rank">Software
+                            Developer.</span><br>based in <span class="upper">thailand</span></h1>
+                </v-col>
+                <v-col cols="12" md="5">
+                    <div class="image-wrapper">
+                        <v-img src="../assets/profile_me.png" height="100vh" contain class="profile-image"></v-img>
+                    </div>
+                </v-col>
+            </v-row>
         </v-container>
     </v-app>
 </template>
@@ -25,6 +32,51 @@ export default {
 </script>
 
 <style>
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+.v-application {
+    min-height: 100vh;
+    max-height: 100vh;
+}
+
+.image-wrapper {
+    transform: translateY(-85px);
+}
+
+.image-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    mix-blend-mode: multiply;
+}
+
+.image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background: rgba(231, 76, 60, 0.3);
+    filter: blur(80px);
+}
+
+profile-image {
+    position: relative;
+    z-index: 1;
+    object-fit: contain;
+    filter: brightness(0.8) contrast(1.1) drop-shadow(0 0 0 transparent);
+    mix-blend-mode: luminosity;
+}
+
 .top {
     margin-top: 100px;
     text-transform: uppercase;

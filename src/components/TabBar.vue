@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="black" dark flat class="px-10" :height="$route.name === 'home' ? 100 : 70">
+  <v-app-bar app color="black" dark flat class="px-10" :height="$route.name === 'home' ? 90 : 70">
     <v-btn icon class="mx-12">
       <v-icon color="#A7121D" size="30px">rocket_launch</v-icon>
     </v-btn>
