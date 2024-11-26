@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <v-app :style="{ backgroundColor: 'black' }">
         <NavBar />
         <div class="bubbles">
             <div class="bubble" v-for="n in 20" :key="n"></div>
@@ -10,7 +10,7 @@
                     <v-img src="../assets/profile_1.jpg" max-width="600" class="rounded-lg" cover />
                 </v-col>
                 <v-col cols="5" class="pl-4">
-                    <h3 class="text-darken-4 gradient-text font-text font-upper">my about details</h3>
+                    <h3 class="gradient-text font-text font-upper">my about details</h3>
                     <h1 class="text-h3 font-weight-bold mb-4 font-text font-upper">About Me</h1>
                     <p class="text-body-1 font-text color-text">
                         Hello, I'm Film. I'm a software developer with a passion for designing and creating websites and
@@ -173,18 +173,20 @@
 
                         <div v-if="tab === 2" class="content-section">
                             <h3 class="color-text margin-b15-l10 education-title">Junior high school <span
-                                    class="education-details">- Science and Math ,Saparachinee 2 School<br>2018</span>
+                                    class="education-details">- Science and Math ,Saparachinee 2 School,
+                                    Trang<br>2018</span>
                             </h3>
                             <h3 class="color-text margin-b15-l10">Senior high school <span class="education-details">-
-                                    Science and Math ,Saparachinee 2 School<br>2021</span></h3>
+                                    Science and Math ,Saparachinee 2 School, Trang<br>2021</span></h3>
                             <h3 class="color-text margin-b15-l10">BSc in PSU <span class="education-details">- Computer
-                                    Engineering, TH<br>2021 - Present</span></h3>
+                                    of Engineering, Songkla<br>2021 - Present</span></h3>
                         </div>
 
                         <div v-if="tab === 3" class="content-section">
-                            <h3 class="hobbies-details">Coding application and arduino</h3>
-                            <h3 class="hobbies-details">Listen to podcasts like ghost stories, evolution</h3>
-                            <h3 class="hobbies-details">Coding application and arduino</h3>
+                            <div class="hobby-item" v-for="(hobby, index) in hobbies" :key="index">
+                                <v-icon color="#A7121D" class="hobby-icon">{{ hobby.icon }}</v-icon>
+                                <h3 class="hobbies-details">{{ hobby.text }}</h3>
+                            </div>
                         </div>
                     </div>
                 </v-col>
@@ -202,7 +204,14 @@ export default {
     },
     data() {
         return {
-            tab: 0
+            tab: 0,
+
+            hobbies: [
+                { icon: 'mdi-code-braces', text: 'Coding application and arduino' },
+                { icon: 'mdi-podcast', text: 'Listen to podcasts like ghost stories, evolution' },
+                { icon: 'mdi-movie-play', text: 'Watch movies, listen to music' },
+                { icon: 'mdi-gamepad-variant', text: 'Play games like TFT and LOL' }
+            ]
         }
     },
     watch: {
@@ -214,6 +223,20 @@ export default {
 </script>
 
 <style>
+.v-application {
+    min-height: 100vh !important;
+    background: black !important;
+}
+
+.v-main {
+    min-height: 100vh;
+}
+
+.v-container {
+    min-height: calc(100vh - 70px);
+    padding-bottom: 0;
+}
+
 .tab-content {
     min-height: 200px;
     position: relative;
@@ -248,7 +271,9 @@ export default {
 }
 
 .font-upper {
-    text-transform: capitalize !important
+    text-transform: capitalize !important;
+    padding-bottom: 12px;
+    font-size: 16px;
 }
 
 .skill-header {
@@ -356,8 +381,31 @@ export default {
     font-size: 14px;
 }
 
+.hobby-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin: 10px 0;
+    background: rgba(44, 62, 80, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.hobby-item:hover {
+    transform: translateX(10px);
+    background: rgba(167, 18, 29, 0.1);
+}
+
+.hobby-icon {
+    margin-right: 15px;
+    padding: 10px;
+    border-radius: 50%;
+    background: rgba(167, 18, 29, 0.1);
+}
+
 .hobbies-details {
-    color: #87898a;
+    margin: 0;
+    color: #bfc9ca;
     font-family: "Arbutus Slab", serif;
     font-size: 16px;
 }
@@ -383,14 +431,14 @@ export default {
     bottom: -100px;
     width: 40px;
     height: 40px;
-    background: #e74c3c;
+    background: #e7402e;
     border-radius: 50%;
-    opacity: 0.1;
+    opacity: 0.3;
     animation: rise 10s infinite ease-in;
 }
 
 .bubble:nth-child(even) {
-    background: #A7121D;
+    background: #e10d1b;
     width: 20px;
     height: 20px;
 }
