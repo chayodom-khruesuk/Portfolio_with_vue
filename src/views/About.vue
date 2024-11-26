@@ -23,32 +23,69 @@
                     </p>
 
                     <v-tabs v-model="tab" color="#A7121D" grow class="border">
-                        <v-tab value="main-skills">Main Skills</v-tab>
-                        <v-tab value="education">Education</v-tab>
-                        <v-tab value="hobbies">hobbies</v-tab>
-                        <v-tab value="likes-dislikes">likes & dislikes</v-tab>
+                        <v-tab>Main Skills</v-tab>
+                        <v-tab>Education</v-tab>
+                        <v-tab>hobbies</v-tab>
+                        <v-tab>likes & dislikes</v-tab>
                     </v-tabs>
 
                     <div class="mt-4 tab-content">
-                        <div v-show="tab === 'main-skills'" class="content-section">
-                            <h3>Programming Skills</h3>
-                            <p>Vue.js, React, JavaScript</p>
+                        <div v-if="tab === 0" class="content-section">
+                            <div class="skill-container">
+                                <div class="skill-header">
+                                    <span class="skill-label">Vue.js</span>
+                                    <span class="skill-percentage">40%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 40%"></div>
+                                </div>
+
+                                <div class="skill-header">
+                                    <span class="skill-label">JavaScript</span>
+                                    <span class="skill-percentage">40%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 40%"></div>
+                                </div>
+
+                                <div class="skill-header">
+                                    <span class="skill-label">Python</span>
+                                    <span class="skill-percentage">75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div>
+
+                                <div class="skill-header">
+                                    <span class="skill-label">Flutter</span>
+                                    <span class="skill-percentage">65%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 65%"></div>
+                                </div>
+
+                                <div class="skill-header">
+                                    <span class="skill-label">HTML&CSS</span>
+                                    <span class="skill-percentage">50%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 50%"></div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div v-show="tab === 'education'" class="content-section">
-                            <h3>Junior high school - Science and Math ,Saparachinee 2 School</h3>
-                            <p>2018</p>
-                            <h3>Senior high school - Science and Math ,Saparachinee 2 School</h3>
-                            <p>2021</p>
-                            <h3>BSc in PSU - Computer Engineering, TH</h3>
+                        <div v-if="tab === 1" class="content-section">
+                            <h3 class="color-text margin-b15-l10 education-title">Junior high school <span class="education-details">- Science and Math ,Saparachinee 2 School<br>2018</span></h3>
+                            <h3 class="color-text margin-b15-l10">Senior high school <span class="education-details">- Science and Math ,Saparachinee 2 School<br>2021</span></h3>
+                            <h3 class="color-text margin-b15-l10">BSc in PSU <span class="education-details">- Computer Engineering, TH<br>2021 - Present</span></h3>
                         </div>
 
-                        <div v-show="tab === 'hobbies'" class="content-section">
+                        <div v-if="tab === 2" class="content-section">
                             <h3>My Hobbies</h3>
                             <p>Coding, Reading, Gaming</p>
                         </div>
 
-                        <div v-show="tab === 'likes-dislikes'" class="content-section">
+                        <div v-if="tab === 3" class="content-section">
                             <h3>Likes</h3>
                             <p>Technology, Coffee, Music</p>
                             <h3>Dislikes</h3>
@@ -70,7 +107,12 @@ export default {
     },
     data() {
         return {
-            tab: 'main-skills'
+            tab: 0
+        }
+    },
+    watch: {
+        tab(newValue) {
+            console.log('Selected tab:', newValue)
         }
     }
 }
@@ -83,7 +125,7 @@ export default {
     z-index: 1;
 }
 .content-section {
-    padding: 20px;
+    padding: -1px 20px;
     position: relative;
     z-index: 1;
 }
@@ -99,12 +141,12 @@ export default {
 
 .color-text {
     color: #bfc9ca;
+    font-family: "Arbutus Slab", serif;
 }
 
 .font-text{
     font-family: "Arbutus Slab", serif;
-    font-style: normal;
-    line-height: 3;
+    line-height: 1;
     letter-spacing: 0.5px;
 }
 
@@ -179,4 +221,63 @@ export default {
 .bubble:nth-child(18) { left: 40%; animation-delay: 9s; }
 .bubble:nth-child(19) { left: 5%; animation-delay: 9.5s; }
 .bubble:nth-child(20) { left: 100%; animation-delay: 10s; }
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.skill-bar-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.skill-container {
+    margin: 20px 0;
+}
+
+.skill-label {
+    color: #bfc9ca;
+    font-family: "Arbutus Slab", serif;
+}
+
+.skill-bar {
+    width: 100%;
+    height: 6px;
+    background: #2c3e50;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(to right, #A7121D, #3498db);
+    border-radius: 15px;
+    transition: width 1s ease-in-out;
+}
+
+.skill-percentage {
+    min-width: 50px;
+    color: #bfc9ca;
+    font-family: "Arbutus Slab", serif;
+}
+
+.margin-b15-l10{
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+
+.education-title {
+    font-family: "Arbutus Slab", serif;
+    font-size: 17px;
+}
+
+.education-details {
+    color: #87898a;
+    font-size: 14px;
+}
 </style>
